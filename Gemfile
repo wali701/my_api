@@ -13,7 +13,7 @@ gem "devise"
 gem "jwt"
 gem "redis"
 gem "rswag"
-gem "will_paginate", "~> 3.3"
+gem "will_paginate", "~> 4.0"
 gem "activerecord-import"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
