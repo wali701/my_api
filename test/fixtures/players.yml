@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  team: MyString
+  position: MyString
+  points_per_game: 1.5
+  assists_per_game: 1.5
+  rebounds_per_game: 1.5
+
+two:
+  name: MyString
+  team: MyString
+  position: MyString
+  points_per_game: 1.5
+  assists_per_game: 1.5
+  rebounds_per_game: 1.5
