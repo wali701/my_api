@@ -1,12 +1,22 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-Player.create(name: 'LeBron James', team: 'Lakers', position: 'Forward', points_per_game: 25.0, assists_per_game: 7.8, rebounds_per_game: 8.1)
-Player.create(name: 'Stephen Curry', team: 'Warriors', position: 'Guard', points_per_game: 30.0, assists_per_game: 6.0, rebounds_per_game: 5.5)
-Player.create(name: 'Kevin Durant', team: 'Suns', position: 'Forward', points_per_game: 29.0, assists_per_game: 5.0, rebounds_per_game: 7.5)
+require 'csv'
+
+# Clear any existing players to avoid duplicates
+Player.destroy_all
+
+# Path to your CSV file
+csv_file = Rails.root.join('db', 'data', 'nba_player_data.csv')
+
+# Read the CSV file and import data
+CSV.foreach(csv_file, headers: true) do |row|
+  Player.create!(
+    name: row['Name'],
+    team: row['Team'],
+    number: row['Number'].to_i,   # Converting to integer
+    position: row['Position'],
+    age: row['Age'].to_i,         # Converting to integer
+    height: row['Height'].to_f,   # Converting to float
+    weight: row['Weight'].to_f,   # Converting to float
+    college: row['College'],
+    salary: row['Salary'].to_f    # Converting to float
+  )
+end
